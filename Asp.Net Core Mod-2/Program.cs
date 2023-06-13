@@ -28,3 +28,4 @@ app.UseAuthorization();  // Use authorization
 app.MapControllers();  // Map attribute routed controllers
 
 app.Run();  // Run the application
+public partial class Program { }

@@ -1,26 +1,31 @@
 using FluentAssertions;
-using System.Net;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using System.Net;
 
 namespace Asp.Net_Core_Mod_2.IntegrationTests
 {
-    public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Api.Startup>>
+    namespace Asp.Net_Core_Mod_2.IntegrationTests
     {
-        readonly HttpClient _client;
-
-
-        public ContactsControllerTests(WebApplicationFactory<Api.Startup> application)
+        public class ContactsControllerTests : IClassFixture<WebApplicationFactory<Program>>
         {
-            _client = application.CreateClient();
+            readonly HttpClient _client;
+
+
+            public ContactsControllerTests(WebApplicationFactory<Program> application)
+            {
+                _client = application.CreateClient();
+
+            }
+
+            [Fact]
+            public async Task GET_retrieves_contact()
+            {
+                var response = await _client.GetAsync("/api/Contacts/GetAllContacts");
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+            }
 
         }
 
-        [Fact]
-        public async Task GET_retrieves_contact()
-        {
-            var response = await _client.GetAsync("/GetAllContacts");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-        }
-       
     }
 }

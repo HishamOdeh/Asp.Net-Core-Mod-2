@@ -5,9 +5,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Asp.Net_Core_Mod_2</RootNamespace>
+	  <PreserveCompilationContext>true</PreserveCompilationContext>
+
   </PropertyGroup>
 
-  <ItemGroup>
+
+
+	<ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
@@ -16,6 +20,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
+		<InternalsVisibleTo Include="Asp.Net Core Mod-2" />
+
+	</ItemGroup>
 
 </Project>
