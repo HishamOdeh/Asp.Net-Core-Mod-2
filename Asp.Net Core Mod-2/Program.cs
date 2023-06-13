@@ -28,4 +28,7 @@ app.UseAuthorization();  // Use authorization
 app.MapControllers();  // Map attribute routed controllers
 
 app.Run();  // Run the application
+
+
+//do i really need this?
 public partial class Program { }
