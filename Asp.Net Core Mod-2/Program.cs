@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;  // Include Entity Framework Core for data access
 using Asp.Net_Core_Mod_2.Data;  // Include application data-related classes
 using Microsoft.Extensions.Configuration;  // Include classes for application configuration
+using RepoDb;
 
 // Configure and create the application
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();  // Use developer exception page in development mode
 }
+
+//This si for the RepoDB connection
+RepoDb.GlobalConfiguration
+    .Setup()
+    .UseSqlServer();
 
 app.UseHttpsRedirection();  // Use HTTPS redirection
 app.UseAuthorization();  // Use authorization

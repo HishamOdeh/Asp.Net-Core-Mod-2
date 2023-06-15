@@ -28,7 +28,7 @@ namespace Asp.Net_Core_Mod_2.IntegrationTests
             public async Task GET_retrieves_contact_by_id()
             {
                 // Arrange
-                var expectedContactId = new Guid("9840b20d-94c9-4b97-06d7-08db6922af52");
+                var expectedContactId = new Guid("917ddbba-af33-42f9-8f46-08db6ce4234e");
 
                 // Act
                 var response = await _client.GetAsync($"/api/Contacts/GetContactById?id={expectedContactId}");
@@ -41,7 +41,7 @@ namespace Asp.Net_Core_Mod_2.IntegrationTests
             public async Task DELETE_removes_contact_by_id()
             {
                 // Arrange
-                var contactIdToDelete = new Guid("9840b20d-94c9-4b97-06d7-08db6922af52");
+                var contactIdToDelete = new Guid("917ddbba-af33-42f9-8f46-08db6ce4234e");
 
                 // Act
                 var response = await _client.DeleteAsync($"/api/Contacts/DeleteContactById?id={contactIdToDelete}");

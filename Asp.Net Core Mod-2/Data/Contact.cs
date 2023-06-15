@@ -1,5 +1,9 @@
-﻿namespace Asp.Net_Core_Mod_2.Data
+﻿using RepoDb.Attributes;
+
+namespace Asp.Net_Core_Mod_2.Data
 {
+    [Map("Contacts")] // Maps this class to the "Contacts" table in the database
+
     public class Contact
     {
         public Guid Id { get; set; }
