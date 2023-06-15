@@ -1,60 +1,56 @@
 ﻿using System;
 using Ardalis.ApiEndpoints;
 using Asp.Net_Core_Mod_2.Data;
+using Asp.Net_Core_Mod_5.Shared;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Core;
 using RepoDb;
 using RepoDb.Extensions;
-
+//using Asp.Net_Core_Mod_5.Shared;
 namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
 {
     public class GetAllContactsRepoDb : EndpointBaseAsync
-        .WithoutRequest
-        .WithActionResult<List<Contact>>
+      .WithoutRequest
+      .WithActionResult<ContactResponseDto>
     {
-        [HttpGet(GetAllContactResponse.RouteTemp)]
-
-        public override async Task<ActionResult<List<Contact>>> HandleAsync(CancellationToken cancellationToken = default)
+        private readonly IConfiguration _configuration;
+        public GetAllContactsRepoDb(IConfiguration configuration)
         {
-            using (var connection = new SqlConnection(GetAllContactResponse.ConnectionString))
-            {
-                var contacts = await connection.QueryAllAsync<Contact>();
-                if (contacts.AsList() == null)
-                {
-                    return NotFound("Contacts database not found  empty.");
-                }
-                return contacts.AsList();
+            _configuration = configuration;
+        }
 
+        [HttpGet(ContactResponseDto.RouteTempGetAll)]
+        public override async Task<ActionResult<ContactResponseDto>> HandleAsync(CancellationToken cancellationToken = default)
+        {
+            using var connection = await new SqlConnection(_configuration.GetConnectionString("DefaultConnection")).EnsureOpenAsync();
+
+            var contacts = await connection.ExecuteQueryAsync<ContactResponseDto.ContactDto>(CreateSql());
+            if (contacts == null || !contacts.Any())
+            {
+                return NotFound("Contacts database not found or empty.");
+            }
+
+            return Ok(ContactResponseDto.Response(contacts));
+
+            string CreateSql()
+            {
+                return @"SELECT [Id]
+                        ,[LastName]
+                        ,[FirstName]
+                        ,[PhoneNumber]
+                        ,[BirthDate]
+                        ,[IsActive]
+                        ,[InActivatedDate]
+                    FROM [ModTwo].[dbo].[Contacts]";
             }
         }
     }
+
 }
 
 
 
-
-    /*
-    public class GetAllContactsRepoDb : EndpointBaseAsync
-        .WithoutRequest
-        .WithActionResult<List<Contact>>
-    {
-        [HttpGet("api/RepoDb/GetAllContacts")]
-
-        public override async Task<ActionResult<List<Contact>>> HandleAsync(CancellationToken cancellationToken = default)
-        {
-            using (var connection = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=ModTwo;Trusted_Connection=True;MultipleActiveResultSets=true"))
-            {
-                var contacts = await connection.QueryAllAsync<Contact>();
-                if (contacts.AsList() == null)
-                {
-                    return NotFound("Contacts database not found  empty.");
-                }
-                return contacts.AsList();
-
-            }
-            throw new NotImplementedException();
-        }
-    }
-    */
 

@@ -26,7 +26,7 @@ namespace Asp.Net_Core_Mod_2.IntegrationTests
         [Fact]
         public async Task GET_ContactByID_retrieves_contactByID()
         {
-            getRequest.Id = Guid.Parse("4255744f-2013-4773-c34f-08db6cea83b5");
+            getRequest.Id = Guid.Parse("c9895b85-9304-42b7-a5d9-08db6cf9923a");
             var response = await _client.GetAsync(getRequest.TestRoute);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
@@ -58,26 +58,35 @@ namespace Asp.Net_Core_Mod_2.IntegrationTests
             var response = await _client.DeleteAsync(deleteRequest.TestRoute);
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
+        public async Task Delete_ReturnNotFound_IfNotFound()
+        {
+            //GET_ContactByID_ReturnBAdRequestIfNotFound;
+            deleteRequest.Id = Guid.Parse("c9895b85-9304-42b7-a5d9-08db6cf9923a");
+            var response = await _client.DeleteAsync(deleteRequest.TestRoute);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        //is it a good idea to add a DbConext instance and create a contact
+        //and add it to the db and then try to delete it and run the tsts onnthat newly generated contacts?
+
+        // When you run these tessts will effect thhe data base, and when they pass they will
+        // fail the next imte if you dont cahnge the id to an existsing id
+        
         [Fact]
         public async Task Delete_ReturnOk_IfFound()
         {
-            deleteRequest.Id = Guid.Parse("4255744f-2013-4773-c34f-08db6cea83b5");
+            deleteRequest.Id = Guid.Parse("c9895b85-9304-42b7-a5d9-08db6cf9923a");
             var response = await _client.DeleteAsync(deleteRequest.TestRoute);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
         [Fact]
         public async Task Delete_ReturnsSuccessMessage_WhenContactIsDeleted()
         {
-            deleteRequest.Id = Guid.Parse("40aa2cd1-1d45-4582-a5da-08db6cf9923a");
+            deleteRequest.Id = Guid.Parse("c9895b85-9304-42b7-a5d9-08db6cf9923a");
             var response = await _client.DeleteAsync(deleteRequest.TestRoute);
             var responseString = await response.Content.ReadAsStringAsync();
             responseString.Should().Be("Contact Deleted successfully.");
         }
-        public async Task Delete_ReturnNOtFound_IfNOtFound()
-        {
-            // GET_ContactByID_ReturnBAdRequestIfNotFound;
-            var response = await _client.DeleteAsync(deleteRequest.TestRoute);
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-        }
+        
     }
 }

@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Asp.Net Core Mod-2\Asp.Net Core Mod-2.csproj" />
-  </ItemGroup>
-
 </Project>

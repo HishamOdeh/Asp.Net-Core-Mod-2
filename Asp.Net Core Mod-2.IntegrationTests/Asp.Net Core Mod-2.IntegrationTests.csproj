@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Asp.Net Core Mod-2\Asp.Net Core Mod-2.csproj" />
+    <ProjectReference Include="..\Asp.Net Core Mod-5.Shared\Asp.Net Core Mod-5.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@ namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
         .WithoutRequest
         .WithActionResult<List<Contact>>
     {
+        //changes-----//
         private readonly ContactsContext _context;
         public GetAllContacts(ContactsContext context)
         {
