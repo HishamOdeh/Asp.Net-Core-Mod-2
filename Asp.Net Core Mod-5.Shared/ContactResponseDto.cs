@@ -12,18 +12,6 @@ namespace Asp.Net_Core_Mod_5.Shared
         public const string RouteTempGetById = "api/RepoDb/GetContactById/{id}";
         public List<ContactDto> Contacts { get; set; }
 
-        /*
-        public record ContactDto
-        {
-            //DTO = DataMisalignedException transfer Object
-            public Guid Id { get; init; }
-            public string LastName { get; init; }
-            public string FirstName { get; init; }
-            public string PhoneNumber { get; init; }
-            public DateTime BirthDate { get; init; }
-            public bool IsActive { get; init; }
-            public DateTime? InActivatedDate { get; init; }
-        };*/
         public record ContactDto
             (Guid Id,
             string LastName,
@@ -42,3 +30,16 @@ namespace Asp.Net_Core_Mod_5.Shared
         }
     }
 }
+
+/*
+public record ContactDto
+{
+    //DTO = DataMisalignedException transfer Object
+    public Guid Id { get; init; }
+    public string LastName { get; init; }
+    public string FirstName { get; init; }
+    public string PhoneNumber { get; init; }
+    public DateTime BirthDate { get; init; }
+    public bool IsActive { get; init; }
+    public DateTime? InActivatedDate { get; init; }
+};*/

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;  // Include Entity Framework Core for data 
 using Asp.Net_Core_Mod_2.Data;  // Include application data-related classes
 using Microsoft.Extensions.Configuration;  // Include classes for application configuration
 using RepoDb;
+using BlazorApp_Mod__7.Service;
 
 // Configure and create the application
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddControllers();
 // Add and configure database context for DI
 builder.Services.AddDbContext<ContactsContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddEndpointsApiExplorer();  // Add services for API explorer
+//builder.Services.AddScoped<IContactService, ContactService>();
 
 // Build the application
 var app = builder.Build();

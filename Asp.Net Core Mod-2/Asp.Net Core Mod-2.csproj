@@ -30,6 +30,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Asp.Net Core Mod-5.Shared\Asp.Net Core Mod-5.Shared.csproj" />
+	  <ProjectReference Include="..\BlazorApp Mod -7\BlazorApp Mod -7.csproj" />
 	</ItemGroup>
 
 </Project>

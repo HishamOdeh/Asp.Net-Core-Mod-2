@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asp.Net Core Mod-2", "Asp.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asp.Net Core Mod-2.IntegrationTests", "Asp.Net Core Mod-2.IntegrationTests\Asp.Net Core Mod-2.IntegrationTests.csproj", "{55DC19D7-C9D0-4225-B867-8EF9B75C555E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp.Net Core Mod-5.Shared", "Asp.Net Core Mod-5.Shared\Asp.Net Core Mod-5.Shared.csproj", "{575DCB18-5EFF-4838-AB54-7EAB2A9AB545}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asp.Net Core Mod-5.Shared", "Asp.Net Core Mod-5.Shared\Asp.Net Core Mod-5.Shared.csproj", "{575DCB18-5EFF-4838-AB54-7EAB2A9AB545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp.Net Core Mod-6.UnitTests", "Asp.Net Core Mod-6\Asp.Net Core Mod-6.UnitTests.csproj", "{A946AAC7-B03A-4582-9473-876385BFD4CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp Mod -7", "BlazorApp Mod -7\BlazorApp Mod -7.csproj", "{3BDFDB88-21E5-4EA4-B870-4A1992E0D274}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{575DCB18-5EFF-4838-AB54-7EAB2A9AB545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575DCB18-5EFF-4838-AB54-7EAB2A9AB545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575DCB18-5EFF-4838-AB54-7EAB2A9AB545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A946AAC7-B03A-4582-9473-876385BFD4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A946AAC7-B03A-4582-9473-876385BFD4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A946AAC7-B03A-4582-9473-876385BFD4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A946AAC7-B03A-4582-9473-876385BFD4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BDFDB88-21E5-4EA4-B870-4A1992E0D274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDFDB88-21E5-4EA4-B870-4A1992E0D274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDFDB88-21E5-4EA4-B870-4A1992E0D274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDFDB88-21E5-4EA4-B870-4A1992E0D274}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
