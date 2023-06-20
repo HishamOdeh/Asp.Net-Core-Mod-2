@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Ardalis.ApiEndpoints;
 using Asp.Net_Core_Mod_2.Data;
 using Asp.Net_Core_Mod_5.Shared;
@@ -14,7 +15,7 @@ namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
 {
     public class GetAllContactsRepoDb : EndpointBaseAsync
       .WithoutRequest
-      .WithActionResult<ContactResponseDto>
+      .WithActionResult<ContactResponseDto.ContactDto>
     {
         private readonly IConfiguration _configuration;
         public GetAllContactsRepoDb(IConfiguration configuration)
@@ -23,7 +24,7 @@ namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
         }
 
         [HttpGet(ContactResponseDto.RouteTempGetAll)]
-        public override async Task<ActionResult<ContactResponseDto>> HandleAsync(CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<ContactResponseDto.ContactDto>> HandleAsync(CancellationToken cancellationToken = default)
         {
             using var connection = await new SqlConnection(_configuration.GetConnectionString("DefaultConnection")).EnsureOpenAsync();
 
@@ -32,8 +33,13 @@ namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
             {
                 return NotFound("Contacts database not found or empty.");
             }
+            return Ok(contacts);
 
-            return Ok(ContactResponseDto.Response(contacts));
+             //return Ok(ContactResponseDto.Response(contacts));
+             //return Ok(JsonSerializer.Serialize(contacts, new JsonSerializerOptions { WriteIndented = true }));
+
+
+            // return Ok(ContactResponseDto.Response(contacts));
 
             string CreateSql()
             {

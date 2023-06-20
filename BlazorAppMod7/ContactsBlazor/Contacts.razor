@@ -1,0 +1,60 @@
+﻿@page "/contacts"
+@using Asp.Net_Core_Mod_5.Shared
+
+@using BlazorAppMod7.ContactsBlazor.Services;
+@using Microsoft.AspNetCore.Components
+
+@inject IContactService ContactService
+@inject NavigationManager NavigationManager
+
+<h3>Contacts List</h3>
+
+    <button @onclick="NavigateToAddContact" class="btn btn-primary add-contact-button mt-3">Add Contact</button>
+
+@if (ContactsBlazor == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in ContactsBlazor)
+            {
+                <tr>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.PhoneNumber</td>
+                    <td>
+                        <button @onclick="(() => NavigateToEditContact(contact.Id))" class="btn btn-warning">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<ContactResponseDto.ContactDto> ContactsBlazor;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ContactsBlazor = await ContactService.GetAll();
+    }
+    private void NavigateToAddContact()
+    {
+        NavigationManager.NavigateTo("/addContact");
+    }
+    private void NavigateToEditContact(Guid id)
+    {
+        NavigationManager.NavigateTo($"/updateContact/{id}");
+    }
+}

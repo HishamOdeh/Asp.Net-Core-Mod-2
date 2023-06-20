@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Core_Mod_5.Shared
@@ -21,15 +22,16 @@ namespace Asp.Net_Core_Mod_5.Shared
             bool IsActive,
             DateTime? InActivatedDate);
 
-        public static ContactResponseDto Response(IEnumerable<ContactDto> contacts)
+        public static IEnumerable<ContactResponseDto.ContactDto> Response(IEnumerable<ContactDto> contacts)
         {
-            return new ContactResponseDto
-            {
-                Contacts = contacts.ToList()
-            };
+            return contacts.ToList();
+            //return JsonSerializer.Serialize(contacts, new JsonSerializerOptions { WriteIndented = true });
+
         }
     }
 }
+
+
 
 /*
 public record ContactDto
