@@ -34,7 +34,7 @@ else
                     <td>@contact.LastName</td>
                     <td>@contact.PhoneNumber</td>
                     <td>
-                        <button @onclick="(() => NavigateToEditContact(contact.Id))" class="btn btn-warning">Edit</button>
+                        <button @onclick="(() => NavigateToUpdateContact(contact.Id))" class="btn btn-warning">Edit</button>
                     </td>
                 </tr>
             }
@@ -53,7 +53,7 @@ else
     {
         NavigationManager.NavigateTo("/addContact");
     }
-    private void NavigateToEditContact(Guid id)
+    private void NavigateToUpdateContact(Guid id)
     {
         NavigationManager.NavigateTo($"/updateContact/{id}");
     }

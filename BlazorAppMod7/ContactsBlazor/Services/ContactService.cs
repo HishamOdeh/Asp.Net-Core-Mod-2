@@ -1,5 +1,8 @@
-﻿using System.Net.Http.Json;
+﻿using System.Linq;
+using System.Net.Http.Json;
 using System.Text.Json;
+using Asp.Net_Core_Mod_2.Data;
+using Asp.Net_Core_Mod_2.Endpoints.Contacts;
 using Asp.Net_Core_Mod_5.Shared;
 
 namespace BlazorAppMod7.ContactsBlazor.Services
@@ -21,17 +24,30 @@ namespace BlazorAppMod7.ContactsBlazor.Services
             return await JsonSerializer.DeserializeAsync<ContactResponseDto.ContactDto>
                 (await _httpClient.GetStreamAsync(ContactResponseDto.RouteTempGetById.Replace("{id}", contactId.ToString())), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
-        public Task<ContactResponseDto.ContactDto> AddContact(ContactResponseDto.ContactDto contact)
+        public async Task  AddContact(ContactResponseDto.ContactDto contact)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PostAsJsonAsync<ContactResponseDto.ContactDto>(AddContactCommand.RouteTemp, contact);
+            response.EnsureSuccessStatusCode();
+
+       //     return await response.Content.ReadFromJsonAsync<ContactResponseDto.ContactDto>(); 
+
         }
-        public Task UpdateContact(ContactResponseDto.ContactDto contact)
+        public async Task<ContactResponseDto.ContactDto> UpdateContact(Guid id, ContactResponseDto.ContactDto contact)
         {
-            throw new NotImplementedException();
+            // replace with your actual route
+            var route = UpdateContactRequst.RouteTemp + "?id=" + id.ToString();
+            var response = await _httpClient.PutAsJsonAsync<ContactResponseDto.ContactDto>(route, contact);
+
+            // optionally check for success
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<ContactResponseDto.ContactDto>();
         }
-        public Task DeleteContact(Guid contactId)
+
+        public async Task DeleteContact(Guid contactId)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.DeleteAsync(DeleteContactCommand.RouteTemp + "?id=" + contactId.ToString());
+            
+            response.EnsureSuccessStatusCode();
         }
     }
 }

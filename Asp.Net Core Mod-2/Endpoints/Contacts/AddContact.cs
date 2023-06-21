@@ -23,8 +23,7 @@ namespace Asp.Net_Core_Mod_2.Endpoints.Contacts
             // Save changes asynchronously.
             await _context.SaveChangesAsync();
 
-            var message = "Contact created successfully.";
-            return NoContent();
+            return Ok();
             //return CreatedAtAction(nameof(AddContact), new { id = request.Id }, message);
         }
     }

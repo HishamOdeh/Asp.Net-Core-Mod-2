@@ -12,6 +12,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<ContactService>();
 builder.Services.AddHttpClient<IContactService, ContactService>(client =>
 {
+    //The Api route from the ASp application must be the same for the Base address. 
     client.BaseAddress = new Uri("https://localhost:7026");
 });
 
